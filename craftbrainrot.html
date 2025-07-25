@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Craft Brainrot, a hilarious meme game online for free. Merge bizarre elements from Italian meme culture and discover absurd combinations!">
+    <link rel="canonical" href="https://craftbrainrot.xyz/">
+    <title>Craft Brainrot: Hilarious Meme Game Online - Free HTML5 Game</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'apple-blue': '#0071e3',
+                        'apple-gray': '#f5f5f7',
+                        'apple-dark': '#1d1d1f',
+                        'apple-light': '#ffffff',
+                        'apple-border': '#d2d2d7'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #fbfbfd;
+            color: #1d1d1f;
+            line-height: 1.6;
+        }
+        
+        .game-container {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .game-container:hover {
+            box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+        }
+        
+        .forum-message {
+            border-left: 3px solid #0071e3;
+            transition: all 0.2s ease;
+        }
+        
+        .forum-message:hover {
+            background-color: rgba(0,113,227,0.03);
+            border-left-width: 4px;
+        }
+        
+        .btn {
+            transition: all 0.2s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span:first-child {
+            color: #0071e3;
+        }
+        
+        .logo span:last-child {
+            color: #ff2d55;
+        }
+        
+        .ad-container {
+            background: linear-gradient(135deg, #f5f5f7 0%, #eaeaea 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #86868b;
+            font-weight: 500;
+            min-height: 90px;
+        }
+        
+        @media (max-width: 768px) {
+            .game-iframe {
+                height: 400px;
+            }
+            
+            .main-content {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-apple-gray">
+    <!-- Header -->
+    <header class="bg-apple-light py-4 px-6 border-b border-apple-border sticky top-0 z-10 shadow-sm">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="logo text-2xl md:text-3xl">
+                <span>Craft</span><span>Brainrot</span><span class="text-apple-dark">.xyz</span>
+            </div>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#" class="text-apple-dark hover:text-apple-blue font-medium">Home</a></li>
+                    <li><a href="#" class="text-apple-dark hover:text-apple-blue font-medium">Games</a></li>
+                    <li><a href="#" class="text-apple-dark hover:text-apple-blue font-medium">Forum</a></li>
+                    <li><a href="#" class="text-apple-dark hover:text-apple-blue font-medium">About</a></li>
+                </ul>
+            </nav>
+            <button class="md:hidden text-apple-dark">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto py-8 px-4 main-content">
+        <!-- Game Title -->
+        <section class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-apple-dark">Play Craft Brainrot: Hilarious Meme Game Online</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Dive into the absurd world of Craft Brainrot! Merge bizarre elements from Italian meme culture and discover hilarious combinations.
+            </p>
+        </section>
+
+        <!-- Ad Container -->
+        <div class="ad-container mb-8">
+            <div class="text-center p-4">
+                <p>Advertisement Space - Google AdSense</p>
+                <p class="text-sm mt-2">728 x 90 Leaderboard</p>
+            </div>
+        </div>
+
+        <!-- Game Section -->
+        <section class="mb-16">
+            <div class="game-container bg-white max-w-4xl mx-auto">
+                <div class="p-1 bg-gradient-to-r from-blue-500 to-purple-500">
+                    <div class="bg-white p-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-2xl font-semibold text-apple-dark">Play Now</h2>
+                            <button id="fullscreen-btn" class="bg-apple-blue text-white px-4 py-2 rounded-lg btn flex items-center">
+                                <i class="fas fa-expand mr-2"></i> Fullscreen
+                            </button>
+                        </div>
+                        <div class="relative pb-[75%]"> <!-- 4:3 Aspect Ratio -->
+                            <iframe id="game-frame" src="https://blockblastonline.com/brainrot-craft.embed/" 
+                                    class="absolute top-0 left-0 w-full h-full game-iframe border-0" 
+                                    allow="autoplay; fullscreen"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Info -->
+        <section class="mb-16 max-w-4xl mx-auto">
+            <h2 class="text-3xl font-semibold mb-6 text-apple-dark border-b pb-2">About Craft Brainrot</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-apple-blue">What is Craft Brainrot?</h3>
+                    <p class="mb-4">
+                        Craft Brainrot is a wildly entertaining HTML5 game that combines surreal humor with addictive merge mechanics. 
+                        Inspired by Italian meme culture, this free online game challenges you to combine absurd elements to create 
+                        even more ridiculous outcomes.
+                    </p>
+                    <p>
+                        Discover unexpected combinations, unlock bizarre characters, and immerse yourself in a world where logic 
+                        takes a backseat to pure, unadulterated fun!
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-apple-blue">Game Features</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Completely free to play - no hidden costs</li>
+                        <li>Simple controls perfect for mobile and desktop</li>
+                        <li>Hundreds of absurd combinations to discover</li>
+                        <li>Regular updates with new content</li>
+                        <li>Share your craziest creations with friends</li>
+                        <li>No registration required</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forum Section -->
+        <section class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-semibold mb-6 text-apple-dark border-b pb-2">Community Forum</h2>
+            <p class="mb-6 text-gray-600">
+                Share your thoughts, strategies, and favorite combinations. No registration needed - post anonymously!
+            </p>
+            
+            <!-- Forum Form -->
+            <div class="bg-white rounded-xl p-6 mb-8 shadow-sm border border-apple-border">
+                <h3 class="text-xl font-semibold mb-4">Post a Message</h3>
+                <form id="forum-form">
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium mb-1">Name (optional)</label>
+                        <input type="text" id="name" class="w-full p-3 border border-apple-border rounded-lg focus:ring-2 focus:ring-apple-blue focus:border-transparent">
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="block text-sm font-medium mb-1">Your Message*</label>
+                        <textarea id="message" rows="4" class="w-full p-3 border border-apple-border rounded-lg focus:ring-2 focus:ring-apple-blue focus:border-transparent" required></textarea>
+                    </div>
+                    <button type="submit" class="bg-apple-blue text-white px-6 py-3 rounded-lg btn font-medium">
+                        Post Message
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Forum Messages -->
+            <div id="forum-messages" class="space-y-6">
+                <!-- Messages will be dynamically inserted here -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div id="load-more-container" class="text-center mt-8 hidden">
+                <button id="load-more-btn" class="bg-white border border-apple-blue text-apple-blue px-6 py-3 rounded-lg btn font-medium">
+                    Load More Messages
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-apple-dark text-white py-12 px-4 mt-12">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">CraftBrainrot.xyz</h3>
+                    <p class="text-gray-400">
+                        The best place for free HTML5 games, meme games, and surreal humor. Play now and join the fun!
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">All Games</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Forum</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Popular Games</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Craft Brainrot</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Meme Merge Madness</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Surreal Clicker</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Italian Meme Simulator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 CraftBrainrot.xyz - All rights reserved. This site is not affiliated with CrazyGames.</p>
+                <p class="mt-2">This site uses cookies for analytics. By using our site, you acknowledge you have read our <a href="#" class="text-gray-400 hover:text-white underline">Privacy Policy</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample forum messages data
+        const sampleMessages = [
+            { name: "MemeLover42", message: "Just discovered the pizza + spaghetti combo - absolute gold! What's your favorite combination so far?", timestamp: "2 hours ago" },
+            { name: "Anonymous", message: "This game is so addicting! Played for 3 hours straight yesterday. No regrets!", timestamp: "5 hours ago" },
+            { name: "ItalianGamer", message: "As an Italian, I approve of the meme culture representation! The espresso + vespa combo had me laughing out loud.", timestamp: "1 day ago" },
+            { name: "MergeMaster", message: "Pro tip: focus on merging the higher tier items first. They give way more points!", timestamp: "1 day ago" },
+            { name: "", message: "How do I unlock the secret characters? I've tried everything!", timestamp: "2 days ago" },
+            { name: "GameDevFan", message: "The surreal humor in this is top-notch. Reminds me of early internet meme culture.", timestamp: "2 days ago" },
+            { name: "StrategyGuru", message: "Anyone have a strategy guide for getting high scores? I keep running out of moves.", timestamp: "3 days ago" },
+            { name: "Anonymous", message: "Just played this during my lunch break. Best decision ever! The cat + bread combo killed me 😂", timestamp: "3 days ago" },
+            { name: "HTML5Fan", message: "Impressed with how well this runs on mobile. Great HTML5 implementation!", timestamp: "4 days ago" },
+            { name: "FirstTimer", message: "First time playing and I'm hooked! How long has this game been out?", timestamp: "4 days ago" }
+        ];
+
+        // Bad words filter
+        const badWords = ["idiot", "stupid", "hate", "moron", "dumb", "suck", "loser"];
+
+        // Function to filter bad words
+        function filterBadWords(text) {
+            let filteredText = text;
+            badWords.forEach(word => {
+                const regex = new RegExp(word, "gi");
+                filteredText = filteredText.replace(regex, "***");
+            });
+            return filteredText;
+        }
+
+        // Function to render messages
+        function renderMessages(messagesToShow) {
+            const forumMessages = document.getElementById('forum-messages');
+            forumMessages.innerHTML = '';
+            
+            messagesToShow.forEach(msg => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'forum-message bg-white p-5 rounded-lg shadow-sm';
+                
+                const nameDisplay = msg.name ? 
+                    `<span class="font-semibold text-apple-blue">${msg.name}</span>` : 
+                    '<span class="font-semibold text-gray-500">Anonymous</span>';
+                
+                messageDiv.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            ${nameDisplay}
+                            <span class="text-gray-500 text-sm ml-2">${msg.timestamp}</span>
+                        </div>
+                        <button class="reply-btn text-gray-500 hover:text-apple-blue text-sm">
+                            <i class="fas fa-reply mr-1"></i> Reply
+                        </button>
+                    </div>
+                    <p class="text-gray-700 mb-3">${msg.message}</p>
+                    <div class="reply-form hidden mt-3">
+                        <textarea class="w-full p-2 border border-gray-300 rounded mb-2" rows="2" placeholder="Write your reply..."></textarea>
+                        <button class="submit-reply bg-apple-blue text-white px-3 py-1 rounded text-sm">Submit Reply</button>
+                    </div>
+                `;
+                
+                forumMessages.appendChild(messageDiv);
+                
+                // Add reply functionality
+                const replyBtn = messageDiv.querySelector('.reply-btn');
+                const replyForm = messageDiv.querySelector('.reply-form');
+                
+                replyBtn.addEventListener('click', () => {
+                    replyForm.classList.toggle('hidden');
+                });
+                
+                const submitReplyBtn = messageDiv.querySelector('.submit-reply');
+                submitReplyBtn.addEventListener('click', function() {
+                    const replyText = this.previousElementSibling.value;
+                    if (replyText.trim()) {
+                        const filteredReply = filterBadWords(replyText);
+                        const newMessage = {
+                            name: '',
+                            message: `RE: ${msg.message.substring(0, 30)}... ${filteredReply}`,
+                            timestamp: "Just now"
+                        };
+                        // Add new reply to the beginning
+                        messagesToShow.unshift(newMessage);
+                        renderMessages(messagesToShow);
+                    }
+                });
+            });
+        }
+
+        // Initialize with sample messages
+        renderMessages(sampleMessages);
+
+        // Handle new message submission
+        document.getElementById('forum-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nameInput = document.getElementById('name');
+            const messageInput = document.getElementById('message');
+            
+            const name = nameInput.value.trim();
+            const message = messageInput.value.trim();
+            
+            if (message) {
+                const filteredMessage = filterBadWords(message);
+                
+                const newMessage = {
+                    name: name,
+                    message: filteredMessage,
+                    timestamp: "Just now"
+                };
+                
+                // Add new message to the beginning
+                sampleMessages.unshift(newMessage);
+                renderMessages(sampleMessages);
+                
+                // Reset form
+                nameInput.value = '';
+                messageInput.value = '';
+            }
+        });
+
+        // Fullscreen functionality
+        document.getElementById('fullscreen-btn').addEventListener('click', function() {
+            const iframe = document.getElementById('game-frame');
+            
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+        });
+    </script>
+</body>
+</html>
